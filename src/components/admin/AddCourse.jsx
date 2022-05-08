@@ -39,13 +39,13 @@ export default function AddCourse() {
         dispatch(fetchCourse(formData))
     };
 
-    const fetchCourse = (formData,_id) => {
+    const fetchCourse = (formData, _id) => {
         return async () => {
             try {
                 const token = localStorage.getItem("Token")
-                const response = await axios.post(apiEnd + '/create', formData,{
+                const response = await axios.post(apiEnd + '/create', formData, {
                     headers: {
-                        authorization : token,
+                        authorization: token,
                     }
                 });
                 toast.success('Successfully Added', toastOptions);
@@ -58,63 +58,76 @@ export default function AddCourse() {
         }
     }
     return (
-        <div className='container-wrapper'>
-            <div className='app-cont-wrapper'>
-                <div className='title'><h2>AddCourse</h2></div><br />
-                <form className='form-wrapper'>
-                    <div className='title'>
-                        <input
-                            id='title'
-                            className='input-course'
-                            type='text'
-                            placeholder='Title'
-                            name='title'
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                        />
-                    </div>
+        <div className="h-500 gradient-form" style={{ backgroundcolor: "#eee" }}>
+            <div className="container py-2 h-60">
+                <div className="row d-flex justify-content-center align-items-center h-50">
+                    <div className="col-xl-5">
+                        <div className="card rounded-3 text-black">
+                            <div className="row g-0">
+                                <div>
+                                    <div className="card-body p-md-5 mx-md-4">
+                                        <form>
+                                            <p>Add Course</p>
+                                            <div className="form-outline mb-4">
+                                                <input
+                                                    id='form2Example10'
+                                                    className='form-control'
+                                                    type='text'
+                                                    placeholder='Title'
+                                                    name='title'
+                                                    value={title}
+                                                    onChange={(e) => setTitle(e.target.value)}
+                                                />
+                                            </div>
+                                            <div className="form-outline mb-4">
+                                                <textarea
+                                                    type="textarea"
+                                                    id="form2Example11"
+                                                    className="form-control"
+                                                    placeholder="Content"
+                                                    name='content'
+                                                    value={content}
+                                                    onChange={(e) => setContent(e.target.value)}
+                                                />
+                                            </div>
 
-                    <div className='content'>
-                        <textarea
-                            id='content'
-                            className='input-course-textarea'
-                            type='textarea'
-                            placeholder='type content'
-                            name='content'
-                            value={content}
-                            onChange={(e) => setContent(e.target.value)}
-                        />
+                                            <div className="form-outline mb-4">
+                                                <input
+                                                    type="text"
+                                                    id="form2Example22"
+                                                    className="form-control"
+                                                    placeholder='video'
+                                                    name='video'
+                                                    value={video}
+                                                    onChange={(e) => setVideo(e.target.value)}
+                                                />
+                                            </div>
 
-                    </div>
+                                            <div className="form-outline mb-4">
+                                                <input
+                                                    type="file"
+                                                    id="form2Example32"
+                                                    className='form-control'
+                                                    name='file'
+                                                    filename="image"
+                                                    onChange={onChange}
+                                                />
+                                            </div>
 
-                    <div className='video'>
-                        <input
-                            id='video'
-                            className='input-course'
-                            type='text'
-                            placeholder='Video link'
-                            name='video'
-                            value={video}
-                            onChange={(e) => setVideo(e.target.value)}
-                        />
+                                            <div className="text-center pt-1  pb-1">
+                                                <button className="btn btn-outline-primary"
+                                                    type="button"
+                                                    onClick={handleSubmit} encType="multipart/form-data">
+                                                    Create
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-                    <div className='file'>
-                        <input
-                            id='file'
-                            className='input'
-                            type='file'
-                            placeholder='file'
-                            name='file'
-                            filename="image"
-                            onChange={onChange}
-                        />
-                    </div>
-
-                    <div>
-                        <button className='submit' onClick={handleSubmit} encType="multipart/form-data" >Create</button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     )

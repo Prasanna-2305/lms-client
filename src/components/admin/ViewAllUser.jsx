@@ -11,7 +11,7 @@ export default function Viewalluser() {
         dispatch(getAllUser())
     })
     return (
-        <div>
+        <div style={{overflowX : 'auto',fontSize: '14px'}}>
             <center><br /><br /><br />
                 <table className='container table table-striped table-dark'>
                     <thead>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import './Navbar.css';
+//import './Navbar.css';
 import { FaSignInAlt, FaUser, FaSignOutAlt, FaAd } from 'react-icons/fa'
 import Registration from '../userLogin/Registration';
 import image from './logo.png';
@@ -44,38 +44,29 @@ export default function NavbarRouter() {
         <div>
             <section>
                 <Router>
-                    <div>
-
-                        <Navbar className="bg-dark " expand="lg" >
-                            <Navbar.Brand href="/welcome" className="ms-5">
+                        <Navbar bg="dark" expand="lg">
+                            <Navbar.Brand href="/welcome" className='ms-2'>
                                 <img src={image} height={40} />
                             </Navbar.Brand>
-                            <Navbar.Toggle aria-controls="navbarScroll" className='bg-white'  />
-                            <Navbar.Collapse id="navbarScroll " className='collapse navbar-collapse'>
-                                <Nav
-                                    className="ms-auto"
-                                    style={{ maxHeight: '30px' }}
-                                    navbarScroll
-                                >
-                                    {token && isAdmin ? (<ul className='d-flex ' style={{ marginRight: '30px', paddingRight:'10px'}}>
-                                        <Nav.Link as={Link} to="/addcourse" className='text-light' >Course|</Nav.Link>
-                                        <Nav.Link as={Link} to="/viewcourse" className='text-light'> ViewCourse|</Nav.Link>
-                                        <Nav.Link as={Link} to="/viewusers" className='text-light'> ViewUser|</Nav.Link>
-                                        <Nav.Link as={Link} to={'/showadminusers'} state={{ user: user }} className='text-light'><FaUser />{user.name}|</Nav.Link>
+                            <Navbar.Toggle aria-controls="basic-navbar-nav"  className='bg-light'/>
+                            <Navbar.Collapse id="basic-navbar-nav">
+                                {token && isAdmin ? (
+                                    <Nav className="me-auto">
+                                        <Nav.Link as={Link} to="/addcourse" className='text-light' >Course</Nav.Link>
+                                        <Nav.Link as={Link} to="/viewcourse" className='text-light'> ViewCourse</Nav.Link>
+                                        <Nav.Link as={Link} to="/viewusers" className='text-light'> ViewUser</Nav.Link>
+                                        <Nav.Link as={Link} to={'/showadminusers'} state={{ user: user }} className='text-light'><FaUser />{user.name}</Nav.Link>
                                         <Nav.Link as={Link} to="/" onClick={handleClick} className='text-light'>Logout<FaSignOutAlt /> </Nav.Link>
-                                    </ul>) : token ? (<ul className='d-flex' style={{ marginRight: '30px' }}>
-                                        <Nav.Link as={Link} to="/allcourses" className='text-light'>Course|</Nav.Link>
-                                        <Nav.Link as={Link} to={'/showusers'} state={{ user: user }} className='text-light'><FaUser />{user.name}|</Nav.Link>
+                                    </Nav>) : token ? (<Nav>
+                                        <Nav.Link as={Link} to="/allcourses" className='text-light'>Course</Nav.Link>
+                                        <Nav.Link as={Link} to={'/showusers'} state={{ user: user }} className='text-light'><FaUser />{user.name}</Nav.Link>
                                         <Nav.Link as={Link} to="/" onClick={handleClick} className='text-light'>Logout<FaSignOutAlt /></Nav.Link>
-                                    </ul>) : (
-                                        <Nav.Link as={Link} to="/" className='text-light' style={{ marginRight: '30px' }}> Login <FaSignInAlt /></Nav.Link>
-                                    )
-                                    }
-                                </Nav>
-
+                                    </Nav>) : (
+                                    <Nav.Link as={Link} to="/" className='text-light' style={{ marginRight: '30px' }}> Login <FaSignInAlt /></Nav.Link>
+                                )
+                                }
                             </Navbar.Collapse>
                         </Navbar>
-                    </div>
 
                     <Routes>
                         <Route path="/" element={<Login />} />

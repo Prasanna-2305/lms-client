@@ -5,16 +5,17 @@ import { FaTrash, FaEdit } from "react-icons/fa"
 import { deleteCourse } from '../../redux/actions/courseAction'
 import { Link } from 'react-router-dom'
 export default function ViewCourse() {
-  const allCourses = useSelector((state) => state.course.courses)
+  const allCourses = useSelector((state) => state?.course?.courses)
   const dispatch = useDispatch()
-  const newcourse = Array.from(allCourses)
+  const newcourses = Array.from(allCourses)
+  //const newcourse = Array.from(allCourses)
   useEffect(() => {
     dispatch(getAllCourse())
   }, [])
   return (
-    <div>
+    <div style={{overflowX : 'auto',fontSize: '14px'}}>
       <center><br /><br /><br />
-        <table className='container table table-striped table-dark'>
+        <table className='container table table-striped table-dark' >
           <thead>
             <tr>
               <th scope='col'>Title</th>
@@ -25,23 +26,23 @@ export default function ViewCourse() {
           </thead>
           <tbody>
             {
-              newcourse && newcourse.map((user, index) => (
+              newcourses && newcourses.map((course, index) => (
                 <tr key={index}>
-                  <td>{user.title}</td>
-                  <td>{user.video}</td>
-                  <td>{user.file}</td>
+                  <td>{course.title}</td>
+                  <td>{course.video}</td>
+                  <td>{course.file}</td>
                   <td>
                     <a className="text-danger mr-2"
                       onClick={() => {
                         const confirmBox = window.confirm(
-                          "Do you really want to delete " + user.title
+                          "Do you really want to delete " + course.title
                         )
                         if (confirmBox === true) {
-                          dispatch(deleteCourse(user._id))
+                          dispatch(deleteCourse(course._id))
                           dispatch(getAllCourse())
                         }
                       }}> <i><FaTrash /></i> </a>
-                    <Link to={`/editcourse/${user._id}`} state={{user:user}}>
+                    <Link to={`/editcourse/${course._id}`} state={{ course: course }}>
                       <i><FaEdit /></i>
                     </Link>
                   </td>
