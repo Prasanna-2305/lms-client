@@ -14,11 +14,11 @@ export default function AllCourse() {
   }, [])
 
   return (
-    <div><div className="row" style={{ marginTop: "10px", marginLeft: "10px", width: "500px" }}>
+    <div className="row mt-3 w-50 m-auto">
       {
         showCourses && showCourses.map((course, index) => (
-          <div className="col-sm-6" key={index}>
-            <div className="card bg-dark">
+          <div className="col-sm-6 mb-3"  key={index}>
+            <div className="card bg-dark ">
               <div className="card-body">
                 <h5 className="card-title text-white">{course.title}</h5>
                 <Link to={`/coursecontent/${course._id}`} className="btn btn-primary">learn</Link>
@@ -27,6 +27,6 @@ export default function AllCourse() {
           </div>
         ))}
     </div>
-    </div>
+    
   )
 }

@@ -79,8 +79,8 @@ export default function CourseContent() {
               e.preventDefault()
               makeComment(e.target[0].value)
             }}>
-              <textarea className="comment-area" style={{ marginRight: "80px" }} col="400" rows="2"></textarea><br />
-              <button className="btn btn-primary" style={{ marginLeft: "300px", marginTop: "-80px" }} type='submit'> <FaComment /></button>
+              <textarea className="form-control" style={{ marginRight: "80px", width:"70"}} col="400" rows="2"></textarea><br />
+              <button className="btn btn-primary"  type='submit'> <FaComment /></button>
             </form>
 
             <div className="w-100 scrollbar scrollbar-primary force-overflow-bg-black">
